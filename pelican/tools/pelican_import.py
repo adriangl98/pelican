@@ -834,11 +834,11 @@ def fields2pelican(
                 fp.write(new_content)
 
             if pandoc_version < (2,):
-                parse_raw = '--parse-raw' if not strip_raw else ''
+                parse_raw = '-raw_html' if not strip_raw else ''
                 wrap_none = '--wrap=none' \
                     if pandoc_version >= (1, 16) else '--no-wrap'
-                cmd = ('pandoc --normalize {0} --from=html'
-                       ' --to={1} {2} -o "{3}" "{4}"')
+                cmd = ('pandoc  --from=html'
+                       ' --to={1}{0} -o "{2}" "{3}"')
                 cmd = cmd.format(parse_raw, out_markup, wrap_none,
                                  out_filename, html_filename)
             else:
